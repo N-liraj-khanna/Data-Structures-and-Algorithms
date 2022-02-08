@@ -20,3 +20,27 @@ public:
         return res;
     }
 };
+
+// 2
+class Solution {
+public:
+    string sortSentence(string s) {
+        
+        unordered_map<int, string> m;
+        int strt=0;
+        string res="";
+        
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='1' && s[i]<='9'){
+                m[s[i]-'0']=s.substr(strt, i-strt);
+            }
+            if(s[i]==' ') strt=i+1;
+        }
+
+        for(int i=1;i<m.size();i++){
+            res+=m[i]+" ";
+        }
+        res+=m[m.size()];
+        return res;
+    }
+};
