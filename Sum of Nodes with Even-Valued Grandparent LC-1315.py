@@ -131,3 +131,36 @@ class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
         return self.grandparent(root, None, None, 0)
 ```
+
+# Same approach but by BFS
+```
+class Solution {
+public:
+    int sumEvenGrandparent(TreeNode* root) {
+        queue<TreeNode*> q;
+        int sum=0;
+        
+        q.push(root);
+        while(!q.empty()){
+            TreeNode* temp=q.front();
+            q.pop();
+            
+            if(temp->val%2==0){
+                if(temp->left){
+                    if(temp->left->left) sum+=temp->left->left->val;
+                    if(temp->left->right) sum+=temp->left->right->val;
+                }
+                if(temp->right){
+                    if(temp->right->left) sum+=temp->right->left->val;
+                    if(temp->right->right) sum+=temp->right->right->val;
+                }
+            }
+            
+            if(temp->left) q.push(temp->left);
+            if(temp->right) q.push(temp->right);
+        }
+        
+        return sum;
+    }
+};
+```

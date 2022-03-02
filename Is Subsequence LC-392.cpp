@@ -1,3 +1,6 @@
+Day 1:
+Question 1: 392. Is Subsequence
+
 // Recursive approach
 class Solution {
 public:
