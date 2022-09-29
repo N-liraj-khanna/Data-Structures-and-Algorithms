@@ -24,3 +24,63 @@ public:
         }
     }
 };
+
+//  approach of storing zeroes index and changing em
+class Solution {
+public:
+    void makeZeroes(vector<vector<int>>& matrix, int x, int y, int& m, int& n){
+        for(int i=0;i<n;i++){
+            matrix[x][i]=0;
+        }
+        for(int i=0;i<m;i++){
+            matrix[i][y]=0;
+        }
+    }
+    void setZeroes(vector<vector<int>>& matrix) {
+        
+        int m=matrix.size(), n=matrix[0].size();
+        vector<pair<int,int>> zeroes;
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    zeroes.push_back({i,j});
+                }
+            }    
+        }
+        for(auto i: zeroes){
+            makeZeroes(matrix, i.first, i.second, m, n);
+        }
+    }
+};
+
+// Another approach on storing the indices in set so less computation and storage space
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        
+        int m=matrix.size(), n=matrix[0].size();
+        unordered_set<int> left;
+        unordered_set<int> down;
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    left.insert(i);
+                    down.insert(j);
+                }
+            }    
+        }
+        
+        for(auto x: left){
+            for(int i=0;i<n;i++){
+                matrix[x][i]=0;
+            }
+        }
+        for(auto y: down){
+            for(int i=0;i<m;i++){
+                matrix[i][y]=0;
+            }
+        }
+    }
+};
