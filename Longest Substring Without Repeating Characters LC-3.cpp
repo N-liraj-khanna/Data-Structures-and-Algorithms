@@ -47,3 +47,29 @@ public:
         return temp.size()>res.size()?temp.size():res.size();
     }
 };
+
+// My approach
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size()<2) return s.size();
+        unordered_map<char,int> map;
+        int maxi=0;
+        string chk="";
+        for(int i=0, j=0;i<s.size()&&j<s.size();i++){
+            
+            if(map.find(s[i])!=map.end()){
+                maxi=maxi<chk.size()?chk.size():maxi;
+                chk="";
+                i=++j;
+                map.clear();
+            }
+            chk+=s[i];
+            map[s[i]]++;
+        }
+    
+        maxi=maxi<chk.size()?chk.size(): maxi;
+        
+        return maxi;
+    }
+};
