@@ -1,4 +1,30 @@
-  
+//  Best optimized TC=>2*O(M*N)
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m=matrix.size(), n=matrix[0].size();
+        bool col=true;
+
+        for(int i=0;i<m;i++){
+            if(matrix[i][0]==0) col=false;
+            for(int j=1;j<n;j++){
+                if(matrix[i][j]==0){
+                    matrix[i][0]=matrix[0][j]=0;
+                }
+            }
+        }
+
+        for(int i=m-1;i>=0;i--){
+            for(int j=n-1;j>=1;j--){
+                if(matrix[i][0]==0 || matrix[0][j]==0){
+                    matrix[i][j]=0;
+                }
+            }
+            if(!col) matrix[i][0]=0;
+        }
+    }
+};
+
 // TC=>O(N^2)+O(Num of zeroes * max(M,N))
 // SC=>O(Num of zeroes)
   
@@ -80,6 +106,36 @@ public:
         for(auto y: down){
             for(int i=0;i<m;i++){
                 matrix[i][y]=0;
+            }
+        }
+    }
+};
+
+// Two vectors, row and column
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m=matrix.size(), n=matrix[0].size();
+        vector<int> row;
+        vector<int> col;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    row.push_back(i);
+                    col.push_back(j);
+                }
+            }
+        }
+
+        for(int i=0;i<row.size();i++){
+            for(int j=0;j<n;j++){
+                matrix[row[i]][j]=0;
+            }
+        }
+
+        for(int i=0;i<col.size();i++){
+            for(int j=0;j<m;j++){
+                matrix[j][col[i]]=0;
             }
         }
     }
