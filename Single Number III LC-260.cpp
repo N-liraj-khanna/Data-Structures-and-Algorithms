@@ -1,5 +1,5 @@
 // bit manupulation
-// tc=> O(N) sc => O(1)
+// tc=> 3*O(N) sc => O(1)
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
