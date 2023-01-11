@@ -1,3 +1,44 @@
+// Best Approach
+// tc=O(N)
+// sc=O(N)
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i=0,j=0;
+        int len=0;
+        unordered_map<char,int> map;
+        while(j<s.size()){
+            if(map.find(s[j])!=map.end()){
+                i=max(map[s[j]]+1,i);
+            }
+            len=max(len,j-i+1);
+            map[s[j]]=j;
+            j++;
+        }
+        return len;
+    }
+};
+
+// Better Approach
+// tc=>O(2*N)
+// sc=O(N)
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i=0,j=0;
+        int len=0;
+        unordered_set<char> set;
+        while(j<s.size()){
+            while(set.find(s[j])!=set.end()){
+                set.erase(s[i++]);
+            }
+            len=max(len,j-i+1);
+            set.insert(s[j++]);
+        }
+        return len;
+    }
+};
+
 // Using just integers as index staring (Kadane's/Sliding window)
 class Solution {
 public:
