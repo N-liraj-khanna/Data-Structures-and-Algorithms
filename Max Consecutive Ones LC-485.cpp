@@ -1,3 +1,20 @@
+// cleaner approach
+// tc=o(n)
+// sc=o(1)
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxi=0,start=0;
+        for(int i=0;i<=nums.size();i++){
+            if(i==nums.size()||nums[i]==0){
+                maxi=max(maxi,i-start);
+                start=i+1;
+            }
+        }
+        return maxi;
+    }
+};
+
 // Sliding Window/Kadane's Approach
 class Solution {
 public:
