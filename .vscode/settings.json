@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.html": "html",
+    "*.js": "javascript",
+    "tuple": "cpp",
+    "type_traits": "cpp"
+  }
+}
