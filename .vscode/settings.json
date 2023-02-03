@@ -3,6 +3,8 @@
     "*.html": "html",
     "*.js": "javascript",
     "tuple": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "vector": "cpp",
+    "iosfwd": "cpp"
   }
 }
