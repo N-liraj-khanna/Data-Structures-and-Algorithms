@@ -5,6 +5,14 @@
     "tuple": "cpp",
     "type_traits": "cpp",
     "vector": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "__split_buffer": "cpp",
+    "array": "cpp",
+    "deque": "cpp",
+    "queue": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "__node_handle": "cpp",
+    "unordered_map": "cpp"
   }
 }
