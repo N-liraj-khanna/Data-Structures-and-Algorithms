@@ -1,38 +1,70 @@
+// tc=o(1)
+// sc=o(1)
 class MinStack {
 public:
-    vector<pair<int,int>> stk;
-    int up=-1;
+    long mini=INT_MAX;
+    stack<long> stk;
+
     MinStack() {}
     
     void push(int val) {
         if(stk.empty()){
-            stk.push_back({val, val});
+            stk.push(val);
+            mini=val;
         }else{
-            stk.push_back({val,min(stk[up].second, val)});
+            if(mini>val){
+                stk.push((long)2*val-mini);
+                mini=val;
+            }else{
+                stk.push(val);
+            }
         }
-        up++;
-
     }
     
     void pop() {
-        stk.pop_back();
-        up--;
+        if(stk.empty()) return;
+        if(mini>stk.top()){
+            mini=2*mini-stk.top();
+        }
+        stk.pop();
     }
     
     int top() {
-        return stk[up].first;
+        if(stk.empty()) return -1;
+        if(mini>stk.top()) return mini;
+        else return stk.top();
     }
     
     int getMin() {
-        return stk[up].second;
+        return mini;
     }
 };
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack* obj = new MinStack();
- * obj->push(val);
- * obj->pop();
- * int param_3 = obj->top();
- * int param_4 = obj->getMin();
- */
+
+// tc=o(1)
+// sc=o(n)
+class MinStack {
+public:
+    stack<pair<int,int>> stk;
+    MinStack() {}
+    
+    void push(int val) {
+        if(stk.empty()) stk.push({val,val});
+        else{
+            stk.push({val,min(stk.top().second,val)});
+        }
+    }
+    
+    void pop() {
+        stk.pop();
+    }
+    
+    int top() {
+        return stk.empty()?-1:stk.top().first;
+    }
+    
+    int getMin() {
+        return stk.empty()?-1:stk.top().second;
+    }
+};
+
