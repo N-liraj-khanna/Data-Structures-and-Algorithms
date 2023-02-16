@@ -1,3 +1,24 @@
+// tc=o(N)
+// sc=o(1)
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        TreeNode *curr=root, *prev;
+        while(curr){
+            if(curr->left){
+                prev=curr->left;
+                while(prev->right){
+                    prev=prev->right;
+                }
+                prev->right=curr->right;
+                curr->right=curr->left;
+                curr->left=NULL;
+            }
+            curr=curr->right;
+        }
+    }
+};
+
 // tc=o(N+N)
 // sc=o(N)
 
