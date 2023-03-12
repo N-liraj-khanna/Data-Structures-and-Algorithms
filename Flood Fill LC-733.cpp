@@ -7,10 +7,11 @@ public:
         
         if(image[sr][sc]==source && image[sr][sc]!=color){
             image[sr][sc]=color;
-            solve(image, source, sr+1,sc,color);
-            solve(image, source, sr-1,sc,color);
-            solve(image, source, sr,sc+1,color);
-            solve(image, source, sr,sc-1,color);
+            vector<int> dir1={-1,0,1,0};
+            vector<int> dir2={0,-1,0,1};
+            for(int i=0;i<4;i++){
+                solve(image, source, sr+dir1[i],sc+dir2[i],color);
+            }
         }
         
     }
